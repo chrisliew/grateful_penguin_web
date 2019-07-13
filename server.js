@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 require("./schema/Gratitudes");
 const cors = require("cors");
 const keys = require("./config/keys");
+const path = require("path");
 
 const app = express();
 
