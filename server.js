@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 require("./schema/Gratitudes");
 const cors = require("cors");
-const keys = require("./config/dev");
+const keys = require("./config/keys");
 
 const app = express();
 
@@ -18,9 +18,7 @@ const db = keys.mongoURL;
 
 // Connect to Mongo
 mongoose
-  .connect(
-    "mongodb://chrisadmin:lollipop1@ds351107.mlab.com:51107/grateful-penguin-dev"
-  )
+  .connect(db)
   .then(() => console.log("MongoDB Connected..."))
   .catch(err => console.log(err));
 
