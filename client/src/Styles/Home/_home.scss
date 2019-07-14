@@ -1,0 +1,22 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__animated_penguin {
+    margin-top: 2em;
+    height: 6em;
+    width: 6em;
+  }
+  &__gratitudes {
+    border: 1px solid black;
+    background-color: skyblue;
+    margin-top: 1em;
+    border-radius: 5px;
+    padding: 1em;
+    width: 40em;
+    &__date {
+      margin: 0;
+      padding-bottom: 1em;
+    }
+  }
+}

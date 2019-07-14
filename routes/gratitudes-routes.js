@@ -10,7 +10,7 @@ module.exports = app => {
   });
 
   // POST /api/gratitudes * add gratitude * PRIVATE
-  app.post("/api/gratitudes", (req, res) => {
+  app.post("/api/gratitudes/", (req, res) => {
     const newGratitudes = new Gratitudes({
       gratitude: req.body.gratitude,
       mood: req.body.mood,

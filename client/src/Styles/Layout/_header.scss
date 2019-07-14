@@ -1,7 +1,15 @@
 .header {
   background-color: skyblue;
-  &__title {
+  display: flex;
+  align-items: center;
+  &__logo {
+    width: 2em;
+    height: 2em;
     padding: 0.5em;
+    margin: 0;
+  }
+  &__title {
+    // padding: 0.5em;
     margin: 0;
   }
 }
