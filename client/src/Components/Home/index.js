@@ -1,54 +1,61 @@
 import React, { Component } from "react";
-import moment from "moment";
 import axios from "axios";
+import AnimatedPenguin from "./AnimatedPenguin";
+import ListGratitudes from "./ListGratitudes";
 
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { gratitudes: [] };
+    this.state = {
+      gratitudes: [],
+      addGratitude: ""
+    };
   }
 
   componentDidMount() {
+    console.log("wtf bro?");
     axios.get("http://localhost:5000/api/gratitudes/").then(res => {
       this.setState({ gratitudes: res.data });
     });
   }
 
+  handleOnChange = event => {
+    this.setState({ addGratitude: event.target.value });
+  };
+
+  handleOnSubmit = event => {
+    event.preventDefault();
+    axios
+      .post("http://localhost:5000/api/gratitudes/", {
+        gratitude: this.state.addGratitude
+      })
+      .then(res => {
+        this.setState(prevState => {
+          return {
+            gratitudes: [...prevState.gratitudes, res.data]
+          };
+        });
+      });
+  };
+
   render() {
-    const dateToday = moment().format("MMMM Do YYYY");
-    console.log("gratitudes", this.state.gratitudes);
+    const { gratitudes } = this.state;
     return (
       <div className='home'>
-        <img
-          className='home__animated_penguin'
-          src='/images/penguin.png'
-          alt='penguin animation'
-        />
-        <h3>Your List Of Gratitudes</h3>
-        <div className='home__gratitudes'>
-          <h4 className='home__gratitudes__date'>{dateToday}</h4>
-          <div>
-            Sed lacus magna, rhoncus sed lorem ac, eleifend pretium nisi.
-            Pellentesque habitant morbi tristique senectus et netus et malesuada
-            fames ac turpis egestas.
-          </div>
+        <AnimatedPenguin />
+        <div className='add_gratitude'>
+          <h3 className='add_gratitude__header'>Add Gratitude Here</h3>
+          <form onSubmit={this.handleOnSubmit}>
+            <input
+              className='add_gratitude__textarea'
+              onChange={this.handleOnChange}
+              type='text'
+              placeholder='Enter stuff here'
+            />
+            {/* <input type='submit' /> */}
+          </form>
         </div>
-        <div className='home__gratitudes'>
-          <h4 className='home__gratitudes__date'>{dateToday}</h4>
-          <div>
-            Sed lacus magna, rhoncus sed lorem ac, eleifend pretium nisi.
-            Pellentesque habitant morbi tristique senectus et netus et malesuada
-            fames ac turpis egestas.
-          </div>
-        </div>
-        <div className='home__gratitudes'>
-          <h4 className='home__gratitudes__date'>{dateToday}</h4>
-          <div>
-            Sed lacus magna, rhoncus sed lorem ac, eleifend pretium nisi.
-            Pellentesque habitant morbi tristique senectus et netus et malesuada
-            fames ac turpis egestas.
-          </div>
-        </div>
+        <ListGratitudes gratitudes={gratitudes} />
       </div>
     );
   }

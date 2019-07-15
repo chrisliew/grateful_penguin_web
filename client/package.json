@@ -7,6 +7,7 @@
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-key-index": "^0.1.1",
     "react-responsive-navbar": "^1.0.11",
     "react-scripts": "3.0.1"
   },
