@@ -1,0 +1,1 @@
+export const FETCH_GRATITUDES = "FETCH_GRATITUDES";

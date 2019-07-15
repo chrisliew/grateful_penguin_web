@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import * as actions from "../../Actions/index";
 import axios from "axios";
 import AnimatedPenguin from "./AnimatedPenguin";
 import ListGratitudes from "./ListGratitudes";
+import { withRouter } from "react-router-dom";
 
 class Home extends Component {
   constructor(props) {
@@ -13,10 +16,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    console.log("wtf bro?");
-    axios.get("http://localhost:5000/api/gratitudes/").then(res => {
-      this.setState({ gratitudes: res.data });
-    });
+    this.props.fetchGratitudes();
   }
 
   handleOnChange = event => {
@@ -39,7 +39,7 @@ class Home extends Component {
   };
 
   render() {
-    const { gratitudes } = this.state;
+    const gratitudes = this.props.gratitudes;
     return (
       <div className='home'>
         <AnimatedPenguin />
@@ -52,7 +52,6 @@ class Home extends Component {
               type='text'
               placeholder='Enter stuff here'
             />
-            {/* <input type='submit' /> */}
           </form>
         </div>
         <ListGratitudes gratitudes={gratitudes} />
@@ -61,4 +60,11 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapStateToProps = state => ({
+  gratitudes: state.gratitudes
+});
+
+export default connect(
+  mapStateToProps,
+  actions
+)(Home);
