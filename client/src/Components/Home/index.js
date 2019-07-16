@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../Actions/index";
-import axios from "axios";
 import AnimatedPenguin from "./AnimatedPenguin";
 import ListGratitudes from "./ListGratitudes";
-import { withRouter } from "react-router-dom";
 
 class Home extends Component {
   constructor(props) {
@@ -25,17 +23,9 @@ class Home extends Component {
 
   handleOnSubmit = event => {
     event.preventDefault();
-    axios
-      .post("http://localhost:5000/api/gratitudes/", {
-        gratitude: this.state.addGratitude
-      })
-      .then(res => {
-        this.setState(prevState => {
-          return {
-            gratitudes: [...prevState.gratitudes, res.data]
-          };
-        });
-      });
+    const gratitude = { gratitude: this.state.addGratitude };
+    this.props.addGratitude(gratitude);
+    this.setState({ addGratitude: "" });
   };
 
   render() {
@@ -50,6 +40,7 @@ class Home extends Component {
               className='add_gratitude__textarea'
               onChange={this.handleOnChange}
               type='text'
+              value={this.state.addGratitude}
               placeholder='Enter stuff here'
             />
           </form>
