@@ -1,0 +1,77 @@
+.register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // height: 100vh;
+}
+.register-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  align-items: center;
+  border: 1px solid black;
+  // width: 25em;
+  background-color: darkgrey;
+  color: white;
+  justify-content: center;
+  padding: 1em 3em 3em 3em;
+  margin: 2em 0 3em 0;
+}
+.register .logo {
+  height: 3em;
+  margin-top: 2em;
+}
+.register .title {
+  margin: 0.5em;
+  font-size: 2em;
+  text-align: center;
+}
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+.register-form input {
+  margin-top: 1em;
+  height: 2.5em;
+  border-radius: 5px;
+  width: 210px;
+}
+.register-button {
+  margin: 1em 0 1em 0;
+  width: 212px;
+  height: 2.5em;
+  border-radius: 5px;
+  background-color: #524646;
+  color: white;
+  border: none;
+}
+.forgot-password,
+.register {
+  margin: 1em 0 0.5em 0;
+  font-style: italic;
+  font-size: 0.8em;
+  // color: rgba(255, 255, 255, 0.858);
+}
+
+.register .google-login-button {
+  width: 212px;
+  height: 37px;
+  border-radius: 5px;
+}
+
+.register .facebook-login-button {
+  width: 238px;
+  height: 70px;
+}
+
+#register-modal {
+  border: 100px solid black;
+  border-radius: 100px;
+  max-width: 800px;
+  position: relative;
+  /* padding: 1.2rem; */
+  background: #ffffff;
+  background-clip: padding-box;
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.25);
+  margin: auto;
+}

@@ -2,9 +2,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 require("./schema/Gratitudes");
+require("./schema/User");
+require("./config/passport-setup-facebook");
 const cors = require("cors");
 const keys = require("./config/keys");
 const path = require("path");
+const passport = require("passport");
 
 const app = express();
 
@@ -29,8 +32,13 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Use Routes
 require("./routes/gratitudes-routes")(app);
+require("./routes/auth-routes-facebook")(app);
+require("./routes/auth-routes")(app);
 
 // Code for production env
 

@@ -32,6 +32,11 @@ class Home extends Component {
     const gratitudes = this.props.gratitudes;
     return (
       <div className='home'>
+        <div>
+          <a href='http://localhost:5000/auth/facebook'>
+            <button>Login With FBn</button>
+          </a>
+        </div>
         <AnimatedPenguin />
         <div className='add_gratitude'>
           <h3 className='add_gratitude__header'>Add Gratitude Here</h3>
